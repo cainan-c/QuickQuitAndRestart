@@ -4,23 +4,18 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <ModName>ModTemplate</ModName>
-    <ModVersion>0.0.1</ModVersion>
-    <Description>A Rhythm Festival template for mod creation.</Description>
+    <ModName>QuickQuitAndRestart</ModName>
+    <ModVersion>1.0.0</ModVersion>
+    <Description>BepInEx Plugin for Taiko no Tatsujin: Rhythm Festival to Quickly Quit and Restart Songs in Enso Mode </Description>
   </PropertyGroup>
   
   <Target Name="UserFile" AfterTargets="PreBuildEvent">
-    <Copy
-      Condition="!Exists('.\$(MSBuildProjectDir)\$(ModName).csproj.user')"
-      SourceFiles="..\$(MSBuildProjectDir)\Resources\Template.csproj.user"
-      DestinationFiles=".\$(MSBuildProjectDir)\$(ModName).csproj.user"/>
-    <Error
-      Condition="$(GameDir)==''"
-      Text="Set the GameDir variable in .csproj.user file to your Rhythm Festival executable directory."/>
+    <Copy Condition="!Exists('.\$(MSBuildProjectDir)\$(ModName).csproj.user')" SourceFiles="..\$(MSBuildProjectDir)\Resources\Template.csproj.user" DestinationFiles=".\$(MSBuildProjectDir)\$(ModName).csproj.user" />
+    <Error Condition="$(GameDir)==''" Text="Set the GameDir variable in .csproj.user file to your Rhythm Festival executable directory." />
   </Target>
 
   <PropertyGroup>
-    <AssemblyName>com.DB.RF.$(ModName)</AssemblyName>
+    <AssemblyName>RF.$(ModName)</AssemblyName>
     <Version>$(ModVersion)</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
@@ -35,6 +30,7 @@
     <Reference Include="$(GameDir)\BepInEx\interop\*.dll" Private="false" />
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />
+    <PackageReference Include="Taiko.GameLibs" Version="1.3.1-r.0" />
   </ItemGroup>
 
   <Target Name="PostBuildCopy" AfterTargets="PostBuildEvent" Condition="$(CopyOutputFiles) == true">

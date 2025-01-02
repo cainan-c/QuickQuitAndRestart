@@ -4,16 +4,16 @@ using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using BepInEx.Configuration;
-using ModTemplate.Plugins;
+using QuickQuitAndRestart.Plugins;
 using UnityEngine;
 using System.Collections;
 
-namespace ModTemplate
+namespace QuickQuitAndRestart
 {
-    [BepInPlugin(MyPluginInfo.PLUGIN_GUID, ModName, MyPluginInfo.PLUGIN_VERSION)]
+    [BepInPlugin(MyPluginInfo.PLUGIN_GUID, QuickQuitAndRestart, MyPluginInfo.PLUGIN_VERSION)]
     public class Plugin : BasePlugin
     {
-        public const string ModName = "ModTemplate";
+        public const string QuickQuitAndRestart = "QuickQuitAndRestart";
 
         public static Plugin Instance;
         private Harmony _harmony = null;
@@ -24,7 +24,8 @@ namespace ModTemplate
         public ConfigEntry<string> ConfigSongTitleLanguageOverride;
         public ConfigEntry<float> ConfigFlipInterval;
 
-
+        public static ConfigEntry<bool> configQuickRestart;
+        public static ConfigEntry<bool> configQuickQuitSong;
 
         public override void Load()
         {
@@ -38,36 +39,41 @@ namespace ModTemplate
 
         private void SetupConfig()
         {
-            var dataFolder = Path.Combine("BepInEx", "data", ModName);
+            var dataFolder = Path.Combine("BepInEx", "data", QuickQuitAndRestart);
+
+            // Add configurations
 
             ConfigEnabled = Config.Bind("General",
                 "Enabled",
                 true,
                 "Enables the mod.");
 
-            ConfigSongTitleLanguageOverride = Config.Bind("General",
-                "SongTitleLanguageOverride",
-                "JP",
-                "Sets the song title to the selected language. (JP, EN, FR, IT, DE, ES, TW, CN, KO)");
+            configQuickRestart = Config.Bind("General.Toggles",
+                        "QuickRestart",
+                        false,
+                        "Hit \"Backspace\" on your keyboard to quickly restart a song.");
 
-            ConfigFlipInterval = Config.Bind("General",
-                "FlipInterval",
-                3f,
-                "How quickly the difficulty flips between oni and ura.");
+            configQuickQuitSong = Config.Bind("General.Toggles",
+                        "QuickQuitSong",
+                        false,
+                        "Hit \"Escape\" on your keyboard to quickly quit a song and return to Song Select.");
         }
 
         private void SetupHarmony()
         {
             // Patch methods
             _harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
+            if (Plugin.configQuickRestart.Value)
+                _harmony.PatchAll(typeof(QuickRestart));
+
+            if (Plugin.configQuickQuitSong.Value)
+                _harmony.PatchAll(typeof(QuickQuitSong));
 
             if (ConfigEnabled.Value)
             {
                 bool result = true;
                 // If any PatchFile fails, result will become false
-                result &= PatchFile(typeof(SwapJpEngTitlesPatch));
-                result &= PatchFile(typeof(AdjustUraFlipTimePatch));
-                SwapJpEngTitlesPatch.SetOverrideLanguages();
+
                 if (result)
                 {
                     Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_NAME} is loaded!");

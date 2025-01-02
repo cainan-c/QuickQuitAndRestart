@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModTemplate
+namespace QuickQuitAndRestart
 {
     public enum LogType
     {
@@ -52,7 +52,7 @@ namespace ModTemplate
                 return;
             }
             string value = values[0];
-            int numSpacing = "[Info   :".Length + Math.Max(Plugin.ModName.Length, 10) + 2;
+            int numSpacing = "[Info   :".Length + Math.Max(Plugin.QuickQuitAndRestart.Length, 10) + 2;
             string spacing = string.Empty;
             for (int i = 0; i < numSpacing; i++)
             {
