@@ -1,21 +1,18 @@
 # RF.QuickQuitAndRestart
- A BepInEx Plugin for Taiko no Tatsujin: Rhythm Festival to Quickly Quit and Restart Songs in Enso Mode
+ A BepInEx Plugin for Taiko no Tatsujin: Rhythm Festival to Quickly Quit and Restart Songs in Enso Mode  
+ Quickly restart the current song being played or quickly exit back to Song Select.  
+ ![animated image of taiko no tatsujin](https://i.imgur.com/oNq2K32.gif)  
  
 # Requirements
  Visual Studio 2022 or newer
  Taiko no Tatsujin: Rhythm Festival
  [BepInEx be 697](https://builds.bepinex.dev/projects/bepinex_be) or [BepInEx 6.0.0-pre.2](https://github.com/BepInEx/BepInEx/releases/tag/v6.0.0-pre.2)
- 
-# Quick Restart and Quick Exit a Song
-Quickly restart the current song being played or quickly exit back to Song Select.
-
-![animated image of taiko no tatsujin](https://i.giphy.com/media/CGKQn5d5bm184P3SfY/giphy.webp) 
 
 # How to use
 
-- [Install BepInEx](https://docs.bepinex.dev/articles/user_guide/installation/index.html)
-- Download `RF.QuickQuitAndRestart.dll` from the [releases page](https://github.com/Renzo904/TekaTeka/releases) and extract its contents on `(GameFolder)\BepInEx\plugins\`
-- Or, install by copying the Repo URL and using [Taiko Mod Manager](https://github.com/cainan-c/TaikoModManager)
+- [Install BepInEx](https://docs.bepinex.dev/articles/user_guide/installation/index.html)  
+- Download `RF.QuickQuitAndRestart.dll` from the [releases page](https://github.com/Renzo904/TekaTeka/releases) and extract its contents on `(GameFolder)\BepInEx\plugins\`  
+- Or, install by copying the Repo URL and using [Taiko Mod Manager](https://github.com/cainan-c/TaikoModManager)  
 
 
 # Build
