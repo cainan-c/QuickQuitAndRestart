@@ -2,6 +2,8 @@
  A BepInEx Plugin for Taiko no Tatsujin: Rhythm Festival to Quickly Quit and Restart Songs in Enso Mode  
  Quickly restart the current song being played or quickly exit back to Song Select.  
  
+ <a href="https://shorturl.at/xEFw0"> <img src="https://i.imgur.com/aoMgX3B.png" alt="One-click Install using the Taiko Mod Manager" width="256"/> </a>
+ 
 # Requirements
  Visual Studio 2022 or newer  
  Taiko no Tatsujin: Rhythm Festival  
